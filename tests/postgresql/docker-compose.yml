@@ -1,0 +1,19 @@
+version: "3"
+
+services:
+  postgres:
+    image: timescale/timescaledb-postgis:2.3.0-pg13
+    environment:
+      - POSTGRES_PASSWORD=password
+      - POSTGRES_DB=database
+    ports:
+      - "5432:5432"
+
+  phppgadmin:
+    image: docker.io/bitnami/phppgadmin:7
+    ports:
+      - "8080:8080"
+    depends_on:
+      - postgres
+    links:
+      - postgres:postgresql

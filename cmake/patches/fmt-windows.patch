@@ -1,0 +1,27 @@
+From 4fbd98997edf5a464c051b755aac43caf1b4b5a4 Mon Sep 17 00:00:00 2001
+From: Benjamin Marechal <benjamin.marechal@dice-engineering.com>
+Date: Tue, 31 Aug 2021 14:57:09 +0200
+Subject: [PATCH] fix windows mingw
+
+---
+ include/fmt/core.h | 4 +++-
+ 1 file changed, 3 insertions(+), 1 deletion(-)
+
+diff --git a/include/fmt/core.h b/include/fmt/core.h
+index 262a94f9..27130e6e 100644
+--- a/include/fmt/core.h
++++ b/include/fmt/core.h
+@@ -205,7 +205,9 @@
+     FMT_INLINE_NAMESPACE v7 {
+ #endif
+ 
+-#if !defined(FMT_HEADER_ONLY) && defined(_WIN32)
++#if defined(__MINGW32__) || defined(__MINGW64__)
++#  define FMT_API
++#elif !defined(FMT_HEADER_ONLY) && defined(_WIN32)
+ #  define FMT_CLASS_API FMT_SUPPRESS_MSC_WARNING(4275)
+ #  ifdef FMT_EXPORT
+ #    define FMT_API __declspec(dllexport)
+-- 
+2.23.0.windows.1
+
