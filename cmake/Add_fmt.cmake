@@ -4,7 +4,7 @@ IF (MINGW OR MSVC)
     FetchContent_Declare(fmt
             GIT_REPOSITORY ${fmt_URL}
             GIT_TAG ${fmt_TAG}
-            PATCH_COMMAND git apply "${CMAKE_CURRENT_SOURCE_DIR}/cmake/patches/fmt-windows.patch"
+#            PATCH_COMMAND git apply "${CMAKE_CURRENT_SOURCE_DIR}/cmake/patches/fmt-windows.patch"
             )
 ELSE (MINGW OR MSVC)
     FetchContent_Declare(fmt
